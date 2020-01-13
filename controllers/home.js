@@ -2,13 +2,13 @@ const charset = require('superagent-charset'),
   superagent = charset(require('superagent')),
   cherrio = require('cheerio')
 class homeCtl {
-  index(ctx) {
+  async index(ctx) {
     // ctx.body = '<h1>这是a a主页</h1>'
-    var item
+    let item
     item = []
-    var url = 'https://dribbble.com/'
-    superagent
-      .get(url)
+    // var url = 'https://www.dytt8.net/index0.html'
+    let data= await superagent
+      .get('http://127.0.0.1:5500/practice.html')
       .charset('gbk')
       .buffer(true)
       .end((err, data) => {
@@ -16,14 +16,9 @@ class homeCtl {
           throw err
         }
         const $ = cherrio.load(data.text)
-        console.log('easy')
-        console.log('data', $)
-        $('.main-full ol').forEach((index, element) => {
-          let $element = $(element)
-          item.push($element.find('.dribbble-link').attr('href'))
-        })
-        console.log('item',item)
-        ctx.body = item
+        let apple=$('.apple').text()
+        console.log("apple",apple);
+        ctx.body = 'apple'
       })
   }
   getMovies() {}
