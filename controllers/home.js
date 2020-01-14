@@ -6,34 +6,31 @@ class homeCtl {
     const data = await new Promise(resolve => {
       let item
       item = []
-      var url = 'https://www.dytt8.net'
+      var url = 'https://dribbble.com/'
       superagent
-        .get(url + '/index0.html')
-        .charset('gbk')
+        .get(url)
+        .charset()
         .buffer(true)
         .end((err, data) => {
           if (err) {
             throw err
           }
           const $ = cherrio.load(data.text)
-          $('.bd3rl .co_area2').each(function(i, element) {
-            if (i > 1) {
+          $('.dribbble-img').each(function(i, element) {
+            if (i > 30) {
               return
             }
             let $element = $(element)
-            $element.find('tr').each((i1, ele) => {
-              let $ele = $(ele)
-              item.push({
-                href: $ele.find('a').attr('href'),
-                name: $ele.find('a').text()
-              })
+
+            item.push({
+              href: $element.find('source').attr('srcset'),
+              name: $element.find('img').attr('alt')
             })
           })
-          ctx.statusCode = 200
           resolve(item)
         })
     })
-    console.log('item', data)
+    console.log('data', data)
     ctx.body = data
   }
   getMovies() {}
