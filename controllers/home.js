@@ -1,38 +1,40 @@
-const charset = require('superagent-charset'),
-  superagent = charset(require('superagent')),
-  cherrio = require('cheerio')
+const charset = require('superagent-charset');
+const superagent = charset(require('superagent'));
+const cherrio = require('cheerio');
+
 class homeCtl {
   async index(ctx) {
-    const data = await new Promise(resolve => {
-      let item
-      item = []
-      var url = 'https://dribbble.com/'
+    const data = await new Promise((resolve) => {
+      let item;
+      item = [];
+      const url = 'https://dribbble.com/';
       superagent
         .get(url)
         .charset()
         .buffer(true)
         .end((err, data) => {
           if (err) {
-            throw err
+            throw err;
           }
-          const $ = cherrio.load(data.text)
-          $('.dribbble-img').each(function(i, element) {
+          const $ = cherrio.load(data.text);
+          $('.dribbble-img').each((i, element) => {
             if (i > 300) {
-              return
+              return;
             }
-            let $element = $(element)
+            const $element = $(element);
 
             item.push({
               href: $element.find('source').attr('srcset'),
-              name: $element.find('img').attr('alt')
-            })
-          })
-          resolve(item)
-        })
-    })
-    console.log('data', data)
-    ctx.body = data
+              name: $element.find('img').attr('alt'),
+            });
+          });
+          resolve(item);
+        });
+    });
+    console.log('data', data);
+    ctx.body = data;
   }
+
   getMovies() {}
 }
-module.exports = new homeCtl()
+module.exports = new homeCtl();
