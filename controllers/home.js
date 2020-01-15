@@ -17,7 +17,7 @@ class homeCtl {
           }
           const $ = cherrio.load(data.text)
           $('.dribbble-img').each(function(i, element) {
-            if (i > 30) {
+            if (i > 300) {
               return
             }
             let $element = $(element)
