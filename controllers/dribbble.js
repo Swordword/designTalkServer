@@ -30,9 +30,10 @@ class homeCtl {
           resolve(item)
         })
     })
-    console.log('data', data)
-    ctx.body = data
+    ctx.body = 'dribbble Index'
   }
-  getMovies() {}
+  type(ctx) {
+    ctx.body = 'TYPE'
+  }
 }
 module.exports = new homeCtl()
