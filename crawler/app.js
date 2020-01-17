@@ -3,8 +3,8 @@ const crawlerFunc = require('./crawler')
 const {download} = require('./download')
 crawlerFunc().then((result) => {
     console.log('result',result)
-    result.forEach(item => {
-        download(item.href)
+    result.forEach(async(item) => {
+        await download(item.href)
     });
 }).catch((err) => {
     throw err
