@@ -2,8 +2,8 @@
 //   superagent = charset(require('superagent')),
 //   cherrio = require('cheerio')
   class homeCtl{
-      async index(ctx){
-          ctx.data="behance"
+      index(ctx){
+          ctx.body="behance"
       }
       type(ctx){
           ctx.body="behance type"
