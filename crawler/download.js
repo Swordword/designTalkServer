@@ -7,7 +7,9 @@ function downImg(url, path) {
   } else {
     fs.mkdirSync(dirname)
   }
-  request(url).pipe(fs.createWriteStream(dirname))
+  request(url).pipe(fs.createWriteStream(
+    'Text.jpg'
+  ))
 }
 
 exports.download = downImg
