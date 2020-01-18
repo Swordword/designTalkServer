@@ -1,13 +1,11 @@
 // 定时器爬虫获取图片
-var schedule = require('node-schedule')
-var craw = require('./func')
-let imageList
-async function aa() {
-	imageList = await craw.test()
-	console.log('111', imageList)
-}
-aa()
-
-// var j = schedule.scheduleJob('/5 * * * * *', function() {
-// 	console.log('111')
-// })
+const crawlerFunc = require('./crawler')
+const {download} = require('./download')
+crawlerFunc().then((result) => {
+	console.log('result',result)
+	result.forEach(async(item) => {
+		await download(item.href)
+	})
+}).catch((err) => {
+	throw err
+})
