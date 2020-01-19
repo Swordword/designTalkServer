@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "crawler":"nodemon crawler/app.js"
+    "crawler": "nodemon crawler/app.js"
   },
   "repository": {
     "type": "git",
@@ -28,9 +28,11 @@
     "path": "^0.12.7"
   },
   "dependencies": {
-    "node-schedule": "^1.3.2",
     "cheerio": "^1.0.0-rc.3",
+    "mongoose": "^5.8.9",
+    "node-schedule": "^1.3.2",
     "superagent": "^5.2.1",
-    "superagent-charset": "^1.2.0"
+    "superagent-charset": "^1.2.0",
+    "validator": "^12.1.0"
   }
 }
