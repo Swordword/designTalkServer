@@ -1,15 +1,23 @@
 const fs = require('fs')
 const request = require('superagent')
 async function downImg(url, path) {
-  let dirname = path || 'storage'
+  const defaultPath = process.cwd() + '/storage'
+  console.log('defaultPath', defaultPath)
+  let dirname = path || defaultPath
   // 判断是否已有文件夹 没有则新建
   if (fs.existsSync(dirname)) {
   } else {
     fs.mkdirSync(dirname)
   }
-  await request(url).pipe(fs.createWriteStream(
-    url.split('cdn.dribbble.com/users/')[1].replace(/\//g,'str')
-  ))
+  try {
+    await request(url).pipe(
+      fs.createWriteStream(defaultPath
+        +'/'+url.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
+      )
+    )
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 exports.download = downImg
