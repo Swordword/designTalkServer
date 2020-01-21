@@ -2,7 +2,6 @@ const fs = require('fs')
 const request = require('superagent')
 async function downImg(url, path) {
   const defaultPath = process.cwd() + '/storage'
-  console.log('defaultPath', defaultPath)
   let dirname = path || defaultPath
   // 判断是否已有文件夹 没有则新建
   if (fs.existsSync(dirname)) {
