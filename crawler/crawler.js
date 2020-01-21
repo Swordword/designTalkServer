@@ -17,7 +17,7 @@ module.exports = function() {
         }
         const $ = cherrio.load(data.text)
         $('.dribbble-img').each(function(i, element) {
-          if (i > 3) {
+          if (i > 30) {
             return
           }
           let $element = $(element)
