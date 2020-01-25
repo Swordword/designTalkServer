@@ -30,9 +30,9 @@ module.exports = function () {
             const $1 = cherrio.load(data2.text)
             item.push({
               name: $1('.shot-title').text(),
-              href: $1('.media-image img').attr('src'),
+              href: $1('.media-content picture img').attr('src')
             })
-            console.log('item1',item)
+            console.log('item1', item)
           })
 
         })
