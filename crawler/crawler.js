@@ -31,11 +31,16 @@ module.exports = function () {
 						}
 						const $1 = cherrio.load(data2.text)
 						let href = $1('.media-content img').attr('data-src')
-						item.push({
-							name: $1('.shot-title').text(),
-							href: href
-						})
+
 						if (href) {
+							const defaultPath = process.cwd() + '/storage'
+							let storagePath = defaultPath
+								+ '/' + href.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
+							item.push({
+								name: $1('.shot-title').text(),
+								href: href,
+								store: storagePath
+							})
 							await download(href)
 						}
 						console.log('itemin', item)
