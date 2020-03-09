@@ -33,7 +33,8 @@ module.exports = function () {
 						let href = $1('.media-content img').attr('data-src')
 
 						if (href) {
-							const defaultPath = process.cwd() + '/storage'
+							const defaultPath = process.cwd() + '/images'
+							// 获取存储路径
 							let storagePath = defaultPath
 								+ '/' + href.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
 							item.push({
@@ -54,5 +55,6 @@ module.exports = function () {
 // 	// const url = 'https://dribbble.com'
 
 // }
+
 // 判断url start with http
 // function checkUrl(url) { }
