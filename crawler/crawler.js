@@ -2,7 +2,7 @@ const charset = require('superagent-charset'),
 	superagent = charset(require('superagent')),
 	cherrio = require('cheerio')
 const { download } = require('./download')
-const dataServer = require('../database/index')
+// const dataServer = require('../database/index')
 
 module.exports = function () {
 	var url = 'https://dribbble.com'
@@ -17,7 +17,7 @@ module.exports = function () {
 			const $ = cherrio.load(data.text)
 			let item = []
 			$('.dribbble-img').each(function (i, element) {
-				if (i > 30) {
+				if (i > 3) {
 					return
 				}
 				let $element = $(element)
@@ -43,13 +43,12 @@ module.exports = function () {
 								storePath: storagePath
 							})
 							await download(href)
-							dataServer.handleSuccess({
-								name: $1('.shot-title').text(),
-								originHref: href,
-								storePath: storagePath
-							})
+							// dataServer.handleSuccess({
+							// 	name: $1('.shot-title').text(),
+							// 	originHref: href,
+							// 	storePath: storagePath
+							// })
 						}
-						console.log('itemin', item)
 					})
 			})
 		})
