@@ -2,25 +2,26 @@ let mongoose = require('mongoose')
 const server = 'localhost'
 const database = 'dribbbleImages'
 
-class DataServer {
+class DataBase {
     constructor() {
         this._connect()
     }
     _connect() {
         mongoose.connect(`mongodb://${server}/${database}`, { useUnifiedTopology: true, useNewUrlParser: true }).then((result) => {
             console.log('连接成功')
+            var ImageSchema = new mongoose.Schema({
+                name: String,
+                url: String,
+                originHref: String
+            })
+            // 构造文档document的class
+            this.Image = mongoose.model('ImageModel', ImageSchema)
         }).catch((err) => {
             console.log('连接失败')
         });
     }
     handleSuccess(item) {
-        var ImageSchema = new mongoose.Schema({
-            name: String,
-            url: String,
-            originHref: String
-        })
-        // 构造文档document的class
-        var Image = mongoose.model('ImageModel', ImageSchema)
+        const Image = this.Image
         new Image({
             name: item.name,
             url: item.storePath,
@@ -31,4 +32,4 @@ class DataServer {
     }
 }
 
-module.exports = new DataServer()
+module.exports = new DataBase()

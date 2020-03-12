@@ -2,7 +2,7 @@ const charset = require('superagent-charset'),
 	superagent = charset(require('superagent')),
 	cherrio = require('cheerio')
 const { download } = require('./download')
-// const dataServer = require('../database/index')
+const dataBase = require('../database/index')
 
 module.exports = function () {
 	var url = 'https://dribbble.com'
@@ -43,11 +43,11 @@ module.exports = function () {
 								storePath: storagePath
 							})
 							await download(href)
-							// dataServer.handleSuccess({
-							// 	name: $1('.shot-title').text(),
-							// 	originHref: href,
-							// 	storePath: storagePath
-							// })
+							dataBase.handleSuccess({
+								name: $1('.shot-title').text(),
+								originHref: href,
+								storePath: storagePath
+							})
 						}
 					})
 			})
