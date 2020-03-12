@@ -2,7 +2,7 @@ const charset = require('superagent-charset'),
 	superagent = charset(require('superagent')),
 	cherrio = require('cheerio')
 const { download } = require('./download')
-const { save2Database } = require('../database/index')
+// const { save2Database } = require('../database/index')
 module.exports = function () {
 	var url = 'https://dribbble.com'
 	superagent
@@ -49,11 +49,3 @@ module.exports = function () {
 		})
 }
 
-// function getSingleImg(data) {
-
-// 	// const url = 'https://dribbble.com'
-
-// }
-
-// 判断url start with http
-// function checkUrl(url) { }
