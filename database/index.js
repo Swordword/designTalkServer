@@ -1,8 +1,8 @@
 let mongoose = require('mongoose')
-const server = '127.0.0.1:27017'
-const database = 'fcc-Mail'
+const server = 'localhost'
+const database = 'dribbbleImages'
 
-class Database {
+class DataServer {
     constructor() {
         this._connect()
     }
@@ -13,7 +13,22 @@ class Database {
             console.log('连接失败')
         });
     }
+    handleSuccess(item) {
+        var ImageSchema = new mongoose.Schema({
+            name: String,
+            url: String,
+            originHref: String
+        })
+        // 构造文档document的class
+        var Image = mongoose.model('ImageModel', ImageSchema)
+        new Image({
+            name: item.name,
+            url: item.storePath,
+            originHref: item.originHref
+        }).save(function (err) {
+            if (err) return console.log(err)
+        })
+    }
 }
 
-
-module.exports = new Database()
+module.exports = new DataServer()

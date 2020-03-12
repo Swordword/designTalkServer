@@ -13,6 +13,6 @@ app.use(koaBody({
 }))
 app.use(parameter(app))
 routing(app)
-app.listen(3010, function () {
+app.listen(3456, function () {
 	console.log('启动')
 })
