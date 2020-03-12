@@ -2,7 +2,7 @@ const charset = require('superagent-charset'),
 	superagent = charset(require('superagent')),
 	cherrio = require('cheerio')
 const { download } = require('./download')
-
+const { save2Database } = require('../database/index')
 module.exports = function () {
 	var url = 'https://dribbble.com'
 	superagent
@@ -31,7 +31,6 @@ module.exports = function () {
 						}
 						const $1 = cherrio.load(data2.text)
 						let href = $1('.media-content img').attr('data-src')
-
 						if (href) {
 							const defaultPath = process.cwd() + '/images'
 							// 获取存储路径
