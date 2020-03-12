@@ -1,9 +1,8 @@
-const charset = require('superagent-charset'),
-  superagent = charset(require('superagent')),
-  cherrio = require('cheerio')
+const DribbbleModel = require('../database/dribbble')
 class homeCtl {
   async index(ctx) {
-    ctx.body = 'dribbble Index'
+    let res = await DribbbleModel.find()
+    ctx.body = res
   }
   type(ctx) {
     ctx.body = 'TYPE'

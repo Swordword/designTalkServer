@@ -2,7 +2,7 @@ const charset = require('superagent-charset'),
 	superagent = charset(require('superagent')),
 	cherrio = require('cheerio')
 const { download } = require('./download')
-const dataBase = require('../database/index')
+const DribbbleImages = require('../database/dribbble')
 
 module.exports = function () {
 	var url = 'https://dribbble.com'
@@ -43,7 +43,7 @@ module.exports = function () {
 								storePath: storagePath
 							})
 							await download(href)
-							dataBase.handleSuccess({
+							DribbbleImages.add({
 								name: $1('.shot-title').text(),
 								originHref: href,
 								storePath: storagePath
