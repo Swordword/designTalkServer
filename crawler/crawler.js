@@ -15,7 +15,7 @@ module.exports = function () {
 				throw err
 			}
 			const $ = cherrio.load(data.text)
-			let item = []
+			let items = []
 			$('.dribbble-img').each(function (i, element) {
 				if (i > 3) {
 					return
@@ -37,7 +37,7 @@ module.exports = function () {
 							// 获取存储路径
 							let storagePath = defaultPath
 								+ '/' + href.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
-							item.push({
+							items.push({
 								name: $1('.shot-title').text(),
 								href: href,
 								storePath: storagePath
@@ -49,6 +49,8 @@ module.exports = function () {
 								storePath: storagePath
 							})
 						}
+						console.log("items", items);
+
 					})
 			})
 		})
