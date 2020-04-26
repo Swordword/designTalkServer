@@ -1,6 +1,6 @@
 let mongoose = require('mongoose')
-const server = 'localhost'
-const database = 'dribbbleImages'
+const server = 'localhost:27017'
+const database = 'designTalk'
 
 class DataBase {
     constructor() {

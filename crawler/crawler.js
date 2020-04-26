@@ -22,6 +22,7 @@ module.exports = function () {
 				}
 				let $element = $(element)
 				let linkUrl = $element.find('.dribbble-link').attr('href')
+				console.log('linkUrl',linkUrl)
 				superagent
 					.get(url + linkUrl)
 					.charset()
@@ -49,7 +50,7 @@ module.exports = function () {
 								storePath: storagePath
 							})
 						}
-						console.log("items", items);
+						// console.log("items", items);
 
 					})
 			})

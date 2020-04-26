@@ -34,7 +34,5 @@ class homeCtl {
     console.log('data', data);
     ctx.body = data;
   }
-
-  getMovies() {}
 }
 module.exports = new homeCtl();

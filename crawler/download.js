@@ -1,6 +1,6 @@
 const fs = require('fs')
 const request = require('superagent')
-async function downImg(url, path) {
+async function download(url, path) {
 	const defaultPath = process.cwd() + '/images'
 	let dirname = path || defaultPath
 	// 判断是否已有文件夹 没有则新建
@@ -9,8 +9,10 @@ async function downImg(url, path) {
 	}
 	try {
 		await request(url).pipe(
-			fs.createWriteStream(defaultPath
-        + '/' + url.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
+			fs.createWriteStream(
+				defaultPath +
+					'/' +
+					url.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
 			)
 		)
 	} catch (error) {
@@ -18,4 +20,6 @@ async function downImg(url, path) {
 	}
 }
 
-exports.download = downImg
+module.exports = {
+	download,
+}
