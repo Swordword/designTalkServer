@@ -20,6 +20,7 @@ class homeCtl {
           $('.dribbble-img').each((i, element) => {
             if (i > 300) {
               return;
+
             }
             const $element = $(element);
 
