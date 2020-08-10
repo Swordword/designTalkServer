@@ -5,7 +5,8 @@ const { download } = require('./download')
 const DribbbleImages = require('../database/dribbble')
 
 module.exports = function () {
-	var url = 'https://dribbble.com'
+	const baseUrl="https://dribbble.com/"
+	const url = 'https://dribbble.com/shots/popular'
 	superagent
 		.get(url)
 		.charset()
@@ -16,15 +17,23 @@ module.exports = function () {
 			}
 			const $ = cherrio.load(data.text)
 			let items = []
-			$('.dribbble-img').each(function (i, element) {
+			$('.shot-thumbnail').each(function (i, element) {
 				if (i > 300) {
 					return
 				}
 				let $element = $(element)
-				let linkUrl = $element.find('.dribbble-link').attr('href')
-				console.log('linkUrl',linkUrl)
+				let linkUrl
+				try {
+					linkUrl = $element.find('.dribbble-link').attr('href')
+				} catch (err) {
+
+				}
+				// 若没有linkUrl，则返回
+				if (!linkUrl) return
+
+				console.log(`${baseUrl}${linkUrl}`)
 				superagent
-					.get(url + linkUrl)
+					.get(baseUrl + linkUrl)
 					.charset()
 					.buffer(true)
 					.end(async (err, data2) => {
