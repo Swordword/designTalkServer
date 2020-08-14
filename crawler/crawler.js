@@ -1,11 +1,11 @@
 const charset = require('superagent-charset'),
 	superagent = charset(require('superagent')),
-	cherrio = require('cheerio')
-const { download } = require('./download')
+	cheerio = require('cheerio')
+const download = require('./download')
 const DribbbleImages = require('../database/dribbble')
 
 module.exports = function () {
-	const baseUrl="https://dribbble.com/"
+	const baseUrl = "https://dribbble.com/shots/popular/web-design/"
 	const url = 'https://dribbble.com/shots/popular'
 	superagent
 		.get(url)
@@ -15,7 +15,7 @@ module.exports = function () {
 			if (err) {
 				throw err
 			}
-			const $ = cherrio.load(data.text)
+			const $ = cheerio.load(data.text)
 			let items = []
 			$('.shot-thumbnail').each(function (i, element) {
 				if (i > 300) {
@@ -40,7 +40,7 @@ module.exports = function () {
 						if (err) {
 							throw err
 						}
-						const $1 = cherrio.load(data2.text)
+						const $1 = cheerio.load(data2.text)
 						let href = $1('.media-content img').attr('data-src')
 						if (href) {
 							const defaultPath = process.cwd() + '/images'

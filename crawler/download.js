@@ -1,7 +1,7 @@
 const fs = require('fs')
 const request = require('superagent')
 async function download(url, path) {
-	const defaultPath = process.cwd() + '/images'
+	const defaultPath = process.cwd() + '/images/'
 	let dirname = path || defaultPath
 	// 判断是否已有文件夹 没有则新建
 	if (!fs.existsSync(dirname)) {
@@ -11,7 +11,6 @@ async function download(url, path) {
 		await request(url).pipe(
 			fs.createWriteStream(
 				defaultPath +
-					'/' +
 					url.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
 			)
 		)
@@ -20,6 +19,5 @@ async function download(url, path) {
 	}
 }
 
-module.exports = {
-	download,
-}
+module.exports = download
+
