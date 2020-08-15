@@ -1,23 +1,20 @@
 const fs = require('fs')
 const request = require('superagent')
-async function download(url, path) {
-	const defaultPath = process.cwd() + '/images/'
-	let dirname = path || defaultPath
-	// 判断是否已有文件夹 没有则新建
-	if (!fs.existsSync(dirname)) {
-		fs.mkdirSync(dirname)
-	}
-	try {
-		await request(url).pipe(
-			fs.createWriteStream(
-				defaultPath +
-					url.split('cdn.dribbble.com/users/')[1].replace(/\//g, '')
-			)
-		)
-	} catch (error) {
-		console.log(error)
-	}
+const defaultDirPath = '/opt/images/'
+
+if (!fs.existsSync(defaultDirPath)) {
+  fs.mkdirSync(defaultDirPath)
+}
+
+async function download(url) {
+  const urlSplit = url.split(/\//g)
+  await request(url).pipe(
+    fs.WriteStream(
+      defaultDirPath + urlSplit[urlSplit.length - 1]
+    )
+  )
+  console.log('下载成功')
+    
 }
 
 module.exports = download
-
