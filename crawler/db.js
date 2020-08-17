@@ -54,7 +54,7 @@ class DB {
   async insert2List(obj) {
     const { title, thumbnail,originHerf} = obj
     const sql = `
-    INSERT INTO imageList (title,thumbnail,originHerf)
+    INSERT INTO ImageList (title,thumbnail,originHerf)
 	    VALUES 
 	  ('${title}','${thumbnail}','${originHerf}');
     `
@@ -66,7 +66,7 @@ class DB {
   async insert2Image(obj) {
     const { name, key, originHerf, cate, relationId } = obj
     const sql = `
-    INSERT INTO images 
+    INSERT INTO Images 
     (name,\`key\`,originHerf,cate,relationId)
     VALUES
     ('${name}', '${key}', '${originHerf}', '${cate}', '${relationId}');
