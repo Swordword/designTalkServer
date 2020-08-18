@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 
-const createDBSql = 'CREATE DATABASE IF NOT EXISTS DesignTalk DEFAULT CHARSET utf8 COLLATE utf8_general_ci;'
+const createDBSql = 'CREATE DATABASE IF NOT EXISTS DesignTalk CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci;'
 
 const createTableImageListSql = `
   CREATE TABLE IF NOT EXISTS ImageList(
@@ -9,7 +9,7 @@ const createTableImageListSql = `
   thumbnail VARCHAR(200),
   originHerf VARCHAR(200),
   PRIMARY KEY ( id )
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
 `
 const createTableImagesSql = `CREATE TABLE IF NOT EXISTS Images(
   id INT UNSIGNED AUTO_INCREMENT,
@@ -19,7 +19,8 @@ const createTableImagesSql = `CREATE TABLE IF NOT EXISTS Images(
   cate VARCHAR(40),
   relationId INT UNSIGNED,
   PRIMARY KEY ( id )
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;`
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_general_ci;
+`
 
 class DB {
   constructor() {
