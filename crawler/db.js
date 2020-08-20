@@ -35,7 +35,7 @@ class DB {
       }
       console.log('连接成功')
     })
-
+    
     connection.query(createDBSql, (err) => {
       if (err) throw err
       console.log('创建数据库成功')

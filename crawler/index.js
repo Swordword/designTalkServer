@@ -2,11 +2,13 @@ const charset = require("superagent-charset");
 const superagent = charset(require("superagent"));
 const cheerio = require("cheerio");
 const DB = require("./db");
-const { parseImageName } = require("./lib");
+const { parseImageName,utf16toEntities } = require("./lib");
 
 const download = require("./download");
 const baseURL = "https://dribbble.com/";
-const URL = "https://dribbble.com/shots/popular/web-design/";
+// const URL = "https://dribbble.com/shots/popular/web-design/";
+const URL = "https://dribbble.com/shots/popular/";
+
 /**
  * TODO: 爬取页面
  */
@@ -19,12 +21,12 @@ superagent
     $(".shot-thumbnail").each(async function (i, element) {
       //TODO:将图片列表（title、date、封面图）存入imageList数据库，赋予id
       // TODO:下载封面图片
-      if (i > 20) {
+      if (i > 10) {
         return;
       }
       const $element = $(element);
 
-      const title = $element.find(".shot-title").text();
+      const title = utf16toEntities($element.find(".shot-title").text()).replace(/'/g,'\'\'');
       console.log("title:", title);
       const thumbnail =
         $element.find("img").attr("src") || $element.find("video").attr("src");
@@ -61,7 +63,7 @@ function getImageNode(pageUrl) {
     .then((singleData) => {
       // TODO:根据单个单元获取产品图片列表
       const $ = cheerio.load(singleData.text,{decodeEntities: false});
-      const name = $(".shot-title").text();
+      const name = utf16toEntities($(".shot-title").text()).replace(/'/g,'\'\'')
       // const imgHrefList = []
       $(".media-content").each(async (index, node) => {
         const $node = $(node);
