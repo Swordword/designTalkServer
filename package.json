@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/Johnmassive/designTalkServer#readme",
   "devDependencies": {
-    "nodemon": "^2.0.2",
     "cross-env": "^5.2.0",
+    "eslint": "^7.7.0",
+    "nodemon": "^2.0.2",
     "path": "^0.12.7"
   },
   "dependencies": {

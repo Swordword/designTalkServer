@@ -35,7 +35,7 @@ class DB {
       }
       console.log('连接成功')
     })
-    
+
     connection.query(createDBSql, (err) => {
       if (err) throw err
       console.log('创建数据库成功')
@@ -52,17 +52,22 @@ class DB {
     })
     this.connection = connection
   }
-  async insert2List(obj) {
+  insert2List(obj) {
     const { title, thumbnail,originHerf} = obj
     const sql = `
     INSERT INTO ImageList (title,thumbnail,originHerf)
 	    VALUES 
 	  ('${title}','${thumbnail}','${originHerf}');
     `
-    await this.connection.query(sql,(err)=>{
-      if(err) throw err
-      console.log('添加Node成功')
+    return new Promise((resolve,reject)=>{
+      this.connection.query(sql,(err,res)=>{
+        if(err) reject(err)
+        const {insertId}=res
+        console.log('添加Node成功')
+        resolve(insertId)
+      })
     })
+    
   }
   async insert2Image(obj) {
     const { name, key, originHerf, cate, relationId } = obj
@@ -77,6 +82,9 @@ class DB {
       console.log('添加image成功')
     })
 
+  }
+  endConnect(){
+    this.connection.end()
   }
 }
 
