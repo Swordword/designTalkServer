@@ -8,6 +8,7 @@ const download = require('./download')
 const baseURL = 'https://dribbble.com/'
 // const URL = "https://dribbble.com/shots/popular/web-design/";
 const URL = 'https://dribbble.com/shots/popular/'
+const competeImgPath = 'https://static.massivejohn.com/'
 
 /**
  * TODO: 爬取页面
@@ -40,7 +41,7 @@ superagent
 
       const nodeObj = {
         title,
-        thumbnail: imageName,
+        thumbnail: `${competeImgPath}${imageName}`,
         originHerf: thumbnail,
       }
       if (!imgLink) return
@@ -76,7 +77,7 @@ function getImageNode(pageUrl,insertId) {
         const cate = herfSplit[herfSplit.length - 1].split('.')[1]
         const obj = {
           name,
-          key: key,
+          key: `${competeImgPath}${key}`,
           originHerf: herf,
           cate,
           relationId:insertId ,
@@ -92,10 +93,3 @@ function getImageNode(pageUrl,insertId) {
     })
 }
 
-/**
- * TODO:下载页面图片
- */
-
-/**
- * TODO: 将数据存入数据库
- */

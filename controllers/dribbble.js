@@ -1,8 +1,10 @@
 const query = require('../lib')
 
 class homeCtl {
-  async image(ctx,relationId) {
-    const SQL=`
+  async image(ctx, next) {
+    console.log('image api', ctx.query)
+    const {relationId} = ctx.query
+    const SQL = `
     SELECT * FROM Images WHERE relationId=${relationId};`
     let res
     try {
@@ -10,19 +12,18 @@ class homeCtl {
       ctx.body = {
         code: 0,
         msg: '请求成功',
-        data: res
+        data: res,
       }
     } catch (error) {
-      ctx.body={
-        code:-1,
-        msg:'请求失败'
+      ctx.body = {
+        code: -1,
+        msg: '请求失败',
       }
     }
-    
   }
   async imageList(ctx) {
     console.log('fn sql imageList')
-    const SQL=`
+    const SQL = `
     SELECT * FROM ImageList;
     `
     let res
@@ -31,12 +32,12 @@ class homeCtl {
       ctx.body = {
         code: 0,
         msg: '请求成功',
-        data: res
+        data: res,
       }
     } catch (error) {
-      ctx.body={
-        code:-1,
-        msg:'请求失败'
+      ctx.body = {
+        code: -1,
+        msg: '请求失败',
       }
     }
   }
