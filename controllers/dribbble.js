@@ -1,9 +1,9 @@
 const query = require('../lib')
 
 class homeCtl {
-  async image(ctx, next) {
-    console.log('image api', ctx.query)
-    const {relationId} = ctx.query
+  async image(ctx) {
+    ctx.log.info('api image', ctx.query)
+    const { relationId } = ctx.query
     const SQL = `
     SELECT * FROM Images WHERE relationId=${relationId};`
     let res
@@ -22,7 +22,7 @@ class homeCtl {
     }
   }
   async imageList(ctx) {
-    console.log('fn sql imageList')
+    ctx.log.info('api imageList')
     const SQL = `
     SELECT * FROM ImageList;
     `
