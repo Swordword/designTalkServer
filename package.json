@@ -41,6 +41,6 @@
     "pino-pretty": "^4.2.1",
     "superagent": "^5.2.1",
     "superagent-charset": "^1.2.0",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   }
 }
