@@ -30,7 +30,7 @@
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-json-error": "^3.1.2",
-    "koa-jwt": "^3.5.1",
+    "koa-jwt": "^4.0.4",
     "koa-pino-logger": "^3.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
